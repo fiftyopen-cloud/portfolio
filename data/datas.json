@@ -1,0 +1,76 @@
+{
+  "description_lien": "Sur demande explicite.",
+
+  "profil": {
+    "name": "Raphaël BRUGGEMAN",
+    "title": "Développeur Web",
+    "description": "Passionné par le développement, je suis constamment à la recherche de nouvelles technologies et de défis pour améliorer mes compétences. Avec une solide expérience en HTML, CSS et JavaScript, je suis capable de créer des sites web modernes et réactifs. Mon objectif est de contribuer à des projets innovants et de continuer à apprendre pour rester à la pointe du développement web.",
+    "image": "./assert//pictures/photo-profil.png",
+    "contact": {
+      "email": "bruggeman.raphael.be@gmail.com",
+      "phone": "+32 (0)473 48 50 28",
+      "linkedin": "https://www.linkedin.com/in/raphael-bruggeman",
+      "github": "https://github.com/bruggemanraphaelbe-collab"  
+    }
+  },
+  "recommandations": [
+    {
+      "id": 1,
+      "name": "Jean Dupont",
+      "position": "Manager chez Tech Solutions",
+      "testimonial": "Raphaël est un développeur exceptionnel. Son travail sur notre projet de site web a été remarquable, respectant les délais et dépassant nos attentes en termes de qualité.",
+      "image": "./assert/pictures/reference1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Sophie Martin",
+      "position": "Directrice chez Web Innovators",
+      "testimonial": "J'ai eu le plaisir de travailler avec Raphaël sur plusieurs projets. Sa créativité et son expertise technique ont grandement contribué au succès de nos initiatives numériques.",
+      "image": "./assert/pictures/reference2.jpg"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Calendrier en Shadow DOM",
+      "description": "Composant de calendrier développé en utilisant le Shadow DOM pour encapsuler le style et la logique du composant, assurant ainsi une isolation complète du reste de la page.",
+      "technologies": ["HTML", "CSS", "JavaScript"],
+      "image": "./assert/pictures/projet1.png",
+      "link": ""
+    },
+    {
+      "id": 2,
+      "title": "Jeu du serpent",
+      "description": "Jeu du serpent développé en utilisant JavaScript pour gérer la logique du jeu et CSS pour le style.",
+      "technologies": ["HTML", "CSS", "JavaScript", "Canvas"],
+      "image": "./assert/pictures/projet2.png",
+      "link": ""
+    },
+    {
+      "id": 3,
+      "title": "Sécurité par schéma",
+      "description": "Projet de sécurité informatique utilisant le schéma pour identifier l'utilisateur.",
+      "technologies": ["HTML", "CSS", "JavaScript", "Canvas"],
+      "image": "./assert/pictures/projet3.png",
+      "link": ""
+    }
+  ],
+  "logos": [
+    {
+      "name": "html",
+      "symbol_path": "./assert/pictures/logos/html5.svg"
+    },
+    {
+      "name": "css",
+      "symbol_path": "./assert/pictures/logos/css3.svg"
+    },
+    {
+      "name": "javascript",
+      "symbol_path": "./assert/pictures/logos/javascript.svg"
+    },
+    {
+      "name": "canvas",
+      "symbol_path": "./assert/pictures/logos/canvas.svg"
+    }
+  ]
+}

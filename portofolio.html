@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio</title>
+    <link rel="stylesheet" href="./assert/css/portofolio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,1,0&icon_names=dark_mode,light_mode" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body id="app">
+    <div class="menu">
+        <nav>
+            <ul>
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#recommandation">Recommandations</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <div class="wrapper-container">
+        <div id="profil">
+            <div class="header">
+                <div class="hamburger"><hr><hr><hr></div>Profile</div>
+            <section>
+                <div class="inner-container"></div>
+            </section>
+        </div>
+        <div id="recommandation">
+            <div class="header">
+                <div class="hamburger"><hr><hr><hr></div>Recommandations</div>
+            <section>
+                <div class="recommandations">
+                    
+                </div>
+            </section>
+        </div>
+        <div id="projets">
+            <div class="header">
+                <div class="hamburger"><hr><hr><hr></div>Projets</div>
+            <section>
+                <div class="projects"></div>
+            </section>
+        </div>
+        <div id="contact">
+            <div class="header">
+                <div class="hamburger"><hr><hr><hr></div>Contact</div>
+            <section>
+                <form id="contact-form" >
+                    <div class="name">
+                        <label for="name">Nom / Société</label>
+                        <input type="text" id="name" name="name" >
+                        <h6 class="error-message">champs requis</h6>
+                    </div>
+                    
+                    <div class="email">
+                        <label for="email">Adresse électronique</label>
+                        <input type="email" id="email" name="email" >
+                        <h6 class="error-message">champs requis</h6>
+                    </div>
+                    
+                    <div class="message">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" ></textarea>
+                        <h6 class="error-message">champs requis</h6>
+                    </div>
+                    
+                    <button type="submit">Envoyer</button>
+                    <h6 class="form-message"></h6>
+                </form>
+                
+                <p>Email <a href="mailto:raphael.bruggeman@hotmail.com">raphael.bruggeman@hotmail.com</a></p>
+                <p>GSM <a href="tel:+32473485028">+32 0473/48.50.28</a></p>
+                <p>LinkedIn <a href="https://www.linkedin.com/in/bruggemanraphael">Raphael Bruggeman</a></p>
+            </section>
+        </div>
+    </div>
+    <script type="module" src="portofolio.js"></script>
+</body>
+</html>
