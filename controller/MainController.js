@@ -4,7 +4,7 @@ import ThemeManager from '../core/ThemeManager.js';
     // https://dashboard.emailjs.com/admin/account
     // free subscription: 1000 emails/month, 5 email templates, 1 email service
     emailjs.init({
-        publicKey: "cB7nFpmRcVGKIujey",
+        publicKey: "7NTnHuoEq3ADQqEQf",
     });
 })();
 
@@ -82,7 +82,7 @@ export default class MainController {
             return;
         }
         
-        emailjs.send('service_q9qxxe4', 'template_aeitw28', payload)
+        emailjs.send('service_phkqwy2', 'template_8hfaobv', payload)
         .then(() => {
             this.#view.render_message('Message envoyé avec succès.');
             console.log('SUCCESS!');
