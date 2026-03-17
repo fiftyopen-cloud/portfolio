@@ -408,6 +408,29 @@ body:not(:has(.wrapper-container > div:target)) nav a[href="#profil"] {
     font-size: var(--regular-font-size);
 }   
 
+#contact-form button[type="submit"]:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.website-field {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.form-message {
+    min-height: 1.2em;
+    margin: 0;
+    font-size: var(--label-font-size);
+}
+
 .error-message {
     font-size: var(--label-font-size);
     color: var(--error-text-color);
@@ -416,6 +439,11 @@ body:not(:has(.wrapper-container > div:target)) nav a[href="#profil"] {
 
 .success-message {
     color: var(--success-text-color);
+    margin: 0;
+}
+
+.info-message {
+    color: var(--text-color);
     margin: 0;
 }
 

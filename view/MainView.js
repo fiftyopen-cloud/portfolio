@@ -1,3 +1,5 @@
+import { StringsHelper } from '../core/helpers/strings_helper.js';
+
 export default class MainView {
     #root;
     #toggle_btn;
@@ -54,26 +56,32 @@ export default class MainView {
     bind_toggle_theme(handler) {  
         let current_theme = localStorage.getItem('theme') || 'light';
 
+        this.#root.addEventListener('click', (event) => {
+            if (event.target.classList.contains('toggle-theme-btn')) {
+                event.preventDefault();
+                if (handler) handler();
+                current_theme = current_theme === 'dark' ? 'light' : 'dark';
+                localStorage.setItem('theme', current_theme);
+                this.update_theme_button(current_theme);
+            }
+        });
+
+        this.update_theme_button(current_theme);
+    }
+
+    update_theme_button(current_theme) {
         this.#root.querySelectorAll('div.header').forEach(header => {
             if (!header.querySelector('.toggle-theme-btn')) {
                 const img = document.createElement('span');
                 img.classList.add('material-symbols-outlined');
                 img.classList.add('toggle-theme-btn');
                 img.setAttribute('alt', 'Toggle light/dark theme');
-                img.innerHTML = current_theme === 'dark' ? 'light_mode' : 'dark_mode';
-                
-                img.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    if (handler) handler();
-                    img.innerHTML = img.innerHTML == 'dark_mode' ? 'dark_mode' : 'light_mode';
-                    localStorage.setItem('theme', img.innerHTML == 'dark_mode' ? 'dark' : 'light');
-                    this.bind_toggle_theme(handler); // Rebind to update the button state after theme change
-                });
+                img.textContent = current_theme === 'dark' ? 'light_mode' : 'dark_mode';
                     
                 header.appendChild(img);
             } else {
                 const existing_btn = header.querySelector('.toggle-theme-btn');
-                existing_btn.innerHTML = current_theme === 'dark' ? 'light_mode' : 'dark_mode';
+                existing_btn.textContent = current_theme === 'dark' ? 'light_mode' : 'dark_mode';
             }
         });
     }
@@ -107,15 +115,20 @@ export default class MainView {
 
     display_user_profil(profil) {
         const profil_div = this.#root.querySelector('.inner-container');
+        const safeName = StringsHelper.escapeHTML(profil?.name);
+        const safeTitle = StringsHelper.escapeHTML(profil?.title);
+        const safeDescription = StringsHelper.escapeHTML(profil?.description);
+        const safeImage = StringsHelper.escapeHTML(StringsHelper.sanitizeURL(profil?.image, ['http:', 'https:']));
+
         profil_div.innerHTML = `
             <div class="presentation">
                 <div class="title">
-                    <h2>${profil.name}</h2>
-                    <h6>${profil.title}</h6>
+                    <h2>${safeName}</h2>
+                    <h6>${safeTitle}</h6>
                 </div>
-                <p class="description">"${profil.description}"</p>
+                <p class="description">"${safeDescription}"</p>
             </div>
-            <img class="profile-photo" src="${profil.image}" alt="Photo de ${profil.name}">
+            <img class="profile-photo" src="${safeImage}" alt="Photo de ${safeName}">
         `;
     }
 
@@ -132,13 +145,16 @@ export default class MainView {
     create_project_item(project, logos) {
         let tech = project.technologies.map(tech => tech.toLowerCase());
         const stack = this.get_stack(tech, logos);
+        const safeTitle = StringsHelper.escapeHTML(project?.title);
+        const safeDescription = StringsHelper.escapeHTML(project?.description);
+        const safeLink = StringsHelper.escapeHTML(StringsHelper.sanitizeURL(project?.link, ['http:', 'https:']));
         
         return `
             <div class="project">
-                <h3>${project.title}</h3>
+                <h3>${safeTitle}</h3>
                 ${stack}
-                <p class="description">${project.description}</p>
-                <a href="${project.link}">Voir le projet</a>
+                <p class="description">${safeDescription}</p>
+                <a href="${safeLink}">Voir le projet</a>
             </div>`;
     }  
 
@@ -147,10 +163,15 @@ export default class MainView {
         techs.forEach(tech => {
             logos.forEach(logo => {
                 if (logo.name.toLowerCase() === tech) {
+                    const safeSymbolPath = StringsHelper.sanitizeURL(logo?.symbol_path, ['http:', 'https:']);
+                    if (safeSymbolPath === '#') {
+                        return;
+                    }
+
                     let img = document.createElement('img');
                         img.classList.add('icon');
-                        img.setAttribute('src', logo.symbol_path);
-                        img.setAttribute('alt', `${tech} logo`);
+                        img.setAttribute('src', safeSymbolPath);
+                        img.setAttribute('alt', `${StringsHelper.escapeHTML(tech)} logo`);
                     stack.appendChild(img);
                 }
             });
@@ -172,32 +193,50 @@ export default class MainView {
         recommandation_div.classList.add('recommandation');
         recommandation_div.innerHTML = `
             <div class="title">
-                <h2 class="name">${recommandation.name}</h2>
-                <h6 class="position">${recommandation.position}</h6>
+                <h2 class="name">${StringsHelper.escapeHTML(recommandation.name)}</h2>
+                <h6 class="position">${StringsHelper.escapeHTML(recommandation.position)}</h6>
             </div>
-            <p class="testimonial">"${recommandation.testimonial}"</p>
+            <p class="testimonial">"${StringsHelper.escapeHTML(recommandation.testimonial)}"</p>
             <button class="demande_references">Demander mes références.</button>
         `;
         return recommandation_div;
     }
 
     form_validation(handler) {
-        const form = this.#root.querySelector('#contact-form');
-        const form_data = form.querySelector('div');
+        const form_data = this.#root.querySelector('#contact-form');
         const nameInput = form_data.querySelector('input[name="name"]');
         const emailInput = form_data.querySelector('input[name="email"]');
         const messageInput = form_data.querySelector('textarea[name="message"]');
+        const websiteInput = form_data.querySelector('input[name="website"]');
     
-        form.addEventListener('submit', (event) => {
+        form_data.addEventListener('submit', (event) => {
             event.preventDefault();
             if (handler) {
                 handler({
                     name: nameInput.value.trim(),
                     email: emailInput.value.trim(),
-                    message: messageInput.value.trim()
+                    message: messageInput.value.trim(),
+                    website: websiteInput ? websiteInput.value.trim() : ''
                 });
             }
         });
+    }
+
+    set_form_submitting(isSubmitting) {
+        const submitButton = this.#root.querySelector('#contact-form button[type="submit"]');
+        if (!submitButton) {
+            return;
+        }
+
+        submitButton.disabled = isSubmitting;
+        submitButton.textContent = isSubmitting ? 'Envoi en cours...' : 'Envoyer';
+    }
+
+    reset_form() {
+        const form = this.#root.querySelector('#contact-form');
+        if (form) {
+            form.reset();
+        }
     }
 
     render_form_errors(errors = {}) {
@@ -214,8 +253,21 @@ export default class MainView {
         });
     }
     
-    render_message(message) {
+    render_message(message, type = 'info') {
         const errorMessage = this.#root.querySelector('#contact-form .form-message');
+        if (!errorMessage) {
+            return;
+        }
+
+        errorMessage.classList.remove('success-message', 'error-message', 'info-message');
+        if (type === 'success') {
+            errorMessage.classList.add('success-message');
+        } else if (type === 'error') {
+            errorMessage.classList.add('error-message');
+        } else {
+            errorMessage.classList.add('info-message');
+        }
+
         errorMessage.textContent = message;
     }
 }
