@@ -15,8 +15,9 @@
     <div class="menu">
         <nav>
             <ul>
-                <li><a href="#profil">Profil</a></li>
+                <li><a href="#introduction">Profil</a></li>
                 <li><a href="#projets">Projets</a></li>
+                <li><a href="#missions">Experiences<br>professionnelle</a></li>
                 <li><a href="#recommandation">Recommandations</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -24,64 +25,62 @@
     </div>
     
     <div class="wrapper-container">
-        <div id="profil">
+        <div id="introduction">
             <div class="header">
-                <div class="hamburger"><hr><hr><hr></div>Profile</div>
+                <div class="hamburger"><hr><hr><hr></div class="section-title">Profile</div>
             <section>
-                <div class="inner-container"></div>
+                <div class="introduction"></div>
             </section>
         </div>
         <div id="recommandation">
             <div class="header">
-                <div class="hamburger"><hr><hr><hr></div>Recommandations</div>
+                <div class="hamburger"><hr><hr><hr></div class="section-title">Recommandations</div>
             <section>
-                <div class="recommandations">
-                    
-                </div>
+                <div class="recommandations"></div>
             </section>
         </div>
         <div id="projets">
             <div class="header">
-                <div class="hamburger"><hr><hr><hr></div>Projets</div>
+                <div class="hamburger"><hr><hr><hr></div class="section-title">Projets</div>
             <section>
                 <div class="projects"></div>
             </section>
         </div>
         <div id="contact">
             <div class="header">
-                <div class="hamburger"><hr><hr><hr></div>Contact</div>
+                <div class="hamburger"><hr><hr><hr></div class="section-title">Contact</div>
             <section>
                 <form id="contact-form" >
                     <div class="name">
                         <label for="name">Nom / Société</label>
-                        <input type="text" id="name" name="name" autocomplete="name" minlength="2" maxlength="80" required placeholder="Ex: Raphael Bruggeman / Tech Studio" >
+                        <input type="text" id="name" name="name" autocomplete="name" minlength="2" maxlength="80" required >
                         <h6 class="error-message">champs requis</h6>
                     </div>
                     
                     <div class="email">
                         <label for="email">Adresse électronique</label>
-                        <input type="email" id="email" name="email" autocomplete="email" maxlength="254" required placeholder="Ex: contact@exemple.com" >
+                        <input type="email" id="email" name="email" autocomplete="email" maxlength="254" required >
                         <h6 class="error-message">champs requis</h6>
                     </div>
                     
                     <div class="message">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" minlength="10" maxlength="1500" required placeholder="Explique ton besoin en quelques lignes (10 caracteres minimum)." ></textarea>
+                        <textarea id="message" name="message" minlength="10" maxlength="1500" required></textarea>
                         <h6 class="error-message">champs requis</h6>
                     </div>
 
                     <div class="website-field" aria-hidden="true">
                         <label for="website">Site web</label>
-                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" placeholder="Ne pas remplir">
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
                     </div>
                     
                     <button type="submit">Envoyer</button>
                     <h6 class="form-message" role="status" aria-live="polite"></h6>
                 </form>
                 
-                <p>Email <a href="mailto:raphael.bruggeman@hotmail.com">raphael.bruggeman@hotmail.com</a></p>
+                <!-- <p>Email <a href="mailto:raphael.bruggeman@hotmail.com">raphael.bruggeman@hotmail.com</a></p>
                 <p>GSM <a href="tel:+32473485028">+32 0473/48.50.28</a></p>
-                <p>LinkedIn <a href="https://www.linkedin.com/in/bruggemanraphael">Raphael Bruggeman</a></p>
+                <p>LinkedIn <a href="https://www.linkedin.com/in/bruggemanraphael">Raphael Bruggeman</a></p> -->
             </section>
         </div>
     </div>

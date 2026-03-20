@@ -126,7 +126,7 @@ export default class MainController {
         };
 
         if (!window.emailjs || typeof window.emailjs.send !== 'function') {
-            this.#view.render_message('Service email indisponible pour le moment. Reessaye plus tard.', 'error');
+            this.#view.render_message('Service email indisponible pour le moment. Veuillez reessayer plus tard.', 'error');
             return;
         }
 
@@ -138,11 +138,11 @@ export default class MainController {
             await window.emailjs.send('service_phkqwy2', 'template_8hfaobv', payload);
             this.#last_submit_at = Date.now();
             this.#form_started_at = Date.now();
-            this.#view.render_message('Message envoye avec succes. Je te reponds rapidement.', 'success');
+            this.#view.render_message('Message envoye avec succes. Je vous reponds rapidement.', 'success');
             this.#view.reset_form();
             this.#view.render_form_errors({});
         } catch (error) {
-            this.#view.render_message('Echec de l\'envoi. Verifie ta connexion puis reessaie.', 'error');
+            this.#view.render_message('Echec de l\'envoi. Verifiez votre connexion puis reessayez.', 'error');
             console.log('FAILED...', error);
         } finally {
             this.#is_submitting = false;

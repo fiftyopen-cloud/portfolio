@@ -2,7 +2,6 @@ import { StringsHelper } from '../core/helpers/strings_helper.js';
 
 export default class MainView {
     #root;
-    #toggle_btn;
     
     constructor(root) {
         this.#root = root;
@@ -114,17 +113,17 @@ export default class MainView {
     }
 
     display_user_profil(profil) {
-        const profil_div = this.#root.querySelector('.inner-container');
+        const introduction_div = this.#root.querySelector('.introduction');
         const safeName = StringsHelper.escapeHTML(profil?.name);
         const safeTitle = StringsHelper.escapeHTML(profil?.title);
         const safeDescription = StringsHelper.escapeHTML(profil?.description);
         const safeImage = StringsHelper.escapeHTML(StringsHelper.sanitizeURL(profil?.image, ['http:', 'https:']));
 
-        profil_div.innerHTML = `
-            <div class="presentation">
-                <div class="title">
-                    <h2>${safeName}</h2>
-                    <h6>${safeTitle}</h6>
+        introduction_div.innerHTML = `
+            <div>   
+                <div class="head">
+                    <h2 class="name">${safeName}</h2>
+                    <h6 class="role">${safeTitle}</h6>
                 </div>
                 <p class="description">"${safeDescription}"</p>
             </div>
@@ -151,7 +150,7 @@ export default class MainView {
         
         return `
             <div class="project">
-                <h3>${safeTitle}</h3>
+                <h3 class="title">${safeTitle}</h3>
                 ${stack}
                 <p class="description">${safeDescription}</p>
                 <a href="${safeLink}">Voir le projet</a>
@@ -169,7 +168,7 @@ export default class MainView {
                     }
 
                     let img = document.createElement('img');
-                        img.classList.add('icon');
+                        img.classList.add('mark');
                         img.setAttribute('src', safeSymbolPath);
                         img.setAttribute('alt', `${StringsHelper.escapeHTML(tech)} logo`);
                     stack.appendChild(img);
@@ -184,22 +183,23 @@ export default class MainView {
         recommandations_container.innerHTML = '';
         recommandations.forEach(recommandation => {
             const recommandation_item = this.create_recommandation_item(recommandation);
-            recommandations_container.appendChild(recommandation_item);
+            recommandations_container.innerHTML += recommandation_item;
         });
     }
 
     create_recommandation_item(recommandation) {
-        const recommandation_div = document.createElement('div');
-        recommandation_div.classList.add('recommandation');
-        recommandation_div.innerHTML = `
-            <div class="title">
-                <h2 class="name">${StringsHelper.escapeHTML(recommandation.name)}</h2>
-                <h6 class="position">${StringsHelper.escapeHTML(recommandation.position)}</h6>
-            </div>
-            <p class="testimonial">"${StringsHelper.escapeHTML(recommandation.testimonial)}"</p>
-            <button class="demande_references">Demander mes références.</button>
-        `;
-        return recommandation_div;
+        const safeName = StringsHelper.escapeHTML(recommandation?.name);
+        const safePosition = StringsHelper.escapeHTML(recommandation?.position);
+        const safeTestimonial = StringsHelper.escapeHTML(recommandation?.testimonial);  
+        
+        return `<div class="recommandation">
+                    <div class="head">
+                        <h2 class="name">${safeName}</h2>
+                        <h6 class="role">${safePosition}</h6>
+                    </div>
+                    <p class="description">"${safeTestimonial}"</p>
+                    <button class="demande_references">Demander mes références.</button>
+                </div>`;
     }
 
     form_validation(handler) {

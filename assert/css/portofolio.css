@@ -10,9 +10,9 @@
     --text-shadow: 0 4px 8px #0000004d inset;
     --error-text-color: #ff4d4d;
     --success-text-color: #4dff4d;
-    --header--font-size: clamp(1rem, 1.2vw, 2rem);
+    --header-font-size: clamp(1rem, 1.2vw, 2rem);
     --regular-font-size: clamp(.8rem, 1vw, 1.5rem);
-    --input--font-size: clamp(.8rem, .5vw, .4rem);
+    --input-font-size: clamp(.8rem, .5vw, .4rem);
     --label-font-size: clamp(.7rem, 0.6vw, .6rem);
     --neon-glow: rgba(140, 190, 255, .45);
     user-select: none;
@@ -100,12 +100,10 @@ html, body, div, p, h1, h2, h3, h4, h5, h6, ul, li, nav, section {
 }
 
 body {
-
     font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: var(--body-bg);
     color: var(--text-color);
     overflow: hidden;
-    
 }
 
 .wrapper-container {
@@ -117,7 +115,6 @@ body {
     position: sticky;
     top: 0;
     height: var(--header-height);
-    font-size: 2rem;
     color: var(--text-color);
     text-shadow: var(--text-shadow);
     padding: 10px 20px;
@@ -126,7 +123,7 @@ body {
     justify-content: space-between;
     z-index: 10;
     background: var(--header-bg);
-    font-size: var(--header--font-size);
+    font-size: var(--header-font-size);
 
 }
 
@@ -182,18 +179,8 @@ p {
     width: 100%;
 }
 
-div.title {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 20px;
+.head {
     width: 100%;
-}
-
-div.inner-container div.presentation {
-    max-width: 300px;
-    width: 100%;
-    padding: 20px;
 }
 
 .menu {
@@ -202,12 +189,12 @@ div.inner-container div.presentation {
     display: flex;
     justify-content: center;
     width: 100%;
-    z-index: 84;
 }
 
 .menu_mobile {
-    display: flex;
-    position: fixed;  
+    display: block;
+    position: fixed;
+    align-self: start;  
     border-radius: 0px 0px 15px 0px;
     top: var(--header-height);
     left: 0;
@@ -234,13 +221,16 @@ nav ul {
 }
 
 nav ul li a {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 20px 40px;
     color: var(--text-color);     
     text-decoration: none;
     text-align: center;  
     box-sizing: border-box;
     width: 100%;
+    height: 100%;
     cursor: pointer;
 }
 
@@ -257,22 +247,53 @@ nav ul li a:active {
     background: var(--nav-hover-bg);
 }
 
-body:has(#profil:target) nav a[href="#profil"],
+body:has(#introduction:target) nav a[href="#introduction"],
 body:has(#projets:target) nav a[href="#projets"],
+body:has(#missions:target) nav a[href="#missions"],
 body:has(#recommandation:target) nav a[href="#recommandation"],
 body:has(#contact:target) nav a[href="#contact"] {
     background: var(--nav-hover-bg);
 }
 
-body:not(:has(.wrapper-container > div:target)) nav a[href="#profil"] {
+body:not(:has(.wrapper-container > div:target)) nav a[href="#introduction"] {
     background: var(--nav-hover-bg);
+}
+
+.mark {
+    all:unset;
+    width: 16px;
+    height: auto;
+    margin-right: 5px;
+}
+
+.description {
+    flex: 3;
+    font-size: var(--input--font-size);
+    align-content: start;
+    text-align: justify; 
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    max-height: 240px;
+    scrollbar-color: var(--container-border-color) transparent;
+}
+
+div.introduction {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 50vw;
+    width: 100%;
+    padding: 20px;
+    gap: 10px;
 }
 
 .projects {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: stretch;
+    align-items: center;
     justify-content: center;
     gap: 10px;
     width: 100%;
@@ -286,51 +307,29 @@ body:not(:has(.wrapper-container > div:target)) nav a[href="#profil"] {
     padding: 40px;
 }
 
-.icon {
-    all:unset;
-    width: 16px;
-    height: auto;
-    margin-right: 5px;
-}
-
-.description {
-    display: flex;
-    flex: 3;
-    font-size: var(--input--font-size);
-    margin-top: 10px;
-    align-content: start;
-    text-align: justify; 
-    line-height: 1.4;   
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--container-border-color) transparent;
-}
-
 .project {
     display: flex;
     flex-direction: column; 
     align-items: flex-start;
-    justify-content: stretch;
-    max-height: 250px;
+    justify-content: flex-start;
+    height: 300px;
     max-width: 300px;
     width: 100%;
     border-radius: 10px;
     padding: 20px;
     box-sizing: border-box;
     box-shadow: var(--container-shadow);
-    gap: 10px;
+    gap: 15px;
 }
 
 .recommandations {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
     width: 100%;
     height: 100%;
-    /* text-align: center; */
     overflow-x: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--container-border-color) transparent;
@@ -340,14 +339,14 @@ body:not(:has(.wrapper-container > div:target)) nav a[href="#profil"] {
 .recommandation {
     display: flex;
     flex-direction: column; 
-    align-items: center;
+    align-items: stretch;
     justify-content: flex-start;
-    max-height: 200px;
-    max-width: 300px;
-    height: 100%;
+    height: 200px;
+    max-width: 50vw;
     width: 100%;
     border: 1px solid var(--container-border-color);
     border-radius: 10px;
+    gap: 15px;
     padding: 10px;
     box-sizing: border-box;
     box-shadow: var(--container-shadow);
@@ -361,7 +360,6 @@ body:not(:has(.wrapper-container > div:target)) nav a[href="#profil"] {
     gap: 10px;
     width: 80vw;
     max-width: 500px;
-    max-height: fit-content;
     box-sizing: border-box;
     padding-top: 30px;
 }
@@ -501,13 +499,43 @@ div.hamburger.is-active hr:nth-child(3) {
 }
 
 @media screen and (max-width: 768px) {
-    * {
-        font-size: clamp(.2rem, 3.5vw, 1.1rem);
+
+    .name {
+        font-size: clamp(1.8rem, 2.5vw, 1.5rem);
     }
-   
+
+    .role {
+        font-size: clamp(1.4rem, 2vw, 1.5rem);
+    }
+    
+    .description {
+        font-size-adjust: 0.8;
+    }
+
+    .title {
+        font-size: clamp(1.3rem, 2.5vw, 1.2rem);
+    }
+
+    .section-title {
+        font-size: clamp(1.0rem, 2.0vw, 1.3rem);
+    }
+
+    div.introduction {
+        flex-direction: column;
+    }
+
+    .recommandation {
+        max-width: 100%;
+        height: 100%;
+    }
+        
     section {
         height: calc(100vh);
-        height: calc(var(--header-height) + 100vh);
+        padding-bottom: var(--header-height);
+    }
+
+    section > div {
+        height: 100%;
     }
 
     nav ul {
@@ -536,8 +564,6 @@ div.hamburger.is-active hr:nth-child(3) {
     div.hamburger {
         display: block;
     }
-
-   
     
 }
 
@@ -545,6 +571,10 @@ div.hamburger.is-active hr:nth-child(3) {
     
     * {
         font-size: clamp(.7rem, 3vw, 1rem);
+    }
+
+    div.introduction {
+        max-width: 70vw;
     }
 
     .menu {
@@ -555,21 +585,6 @@ div.hamburger.is-active hr:nth-child(3) {
         width: 100%;
         z-index: 84;
     }
-   
 
-    /* nav ul {
-        display: flex;
-        border-radius: 15px;
-        width: 100%;
-    }
-
-    nav ul {
-        position: fixed;
-        display: none;
-        flex-direction: column;
-    } */
-
-    /* .menu {
-        position: fixed;
-    } */
+    
 }
