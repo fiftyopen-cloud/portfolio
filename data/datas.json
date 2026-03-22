@@ -29,6 +29,15 @@
       "image": "./assert/pictures/reference2.jpg"
     }
   ],
+  "Experiences": [
+    {
+      "id": 1,
+      "title": "Stagiaire en Développement Web Front-end",
+      "company": "DeBuck Technology",
+      "duration": "24 novembre 2025 - 29 janvier 2026",
+      "description": "Apprentissage du framework Aurelia v1 et application d'amélioration localisée."
+    }
+  ],
   "projects": [
     {
       "id": 1,

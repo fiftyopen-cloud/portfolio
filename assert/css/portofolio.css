@@ -530,8 +530,9 @@ div.hamburger.is-active hr:nth-child(3) {
     }
         
     section {
-        height: calc(100vh);
+        height: calc(100vh - var(--header-height));
         padding-bottom: var(--header-height);
+        margin-bottom: 40px;
     }
 
     section > div {
