@@ -12,41 +12,31 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body id="app">
-    <div class="menu">
-        <nav>
-            <ul>
-                <li><a href="#introduction">Profil</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#missions">Experiences<br>professionnelle</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-    
-    <div class="wrapper-container">
+        
+    <main class="wrapper-container">
+        <div class="header">
+            <div class="hamburger"><hr><hr><hr></div> 
+            <nav>
+                <ul>
+                    <li><a href="#introduction">Profil</a></li>
+                    <li><a href="#projets">Projets</a></li>
+                    <li><a href="#missions">Experiences<br>professionnelle</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <span class="toggle-theme-btn material-symbols-outlined" alt="Toggle light/dark theme">light_mode</span>
+        </div>
         <div id="introduction">
-            <div class="header">
-                <div class="hamburger"><hr><hr><hr></div> 
-                <div class="section-title">Profile</div>
-            </div>
             <section>
                 <div class="introduction"></div>
             </section>
         </div>
         <div id="projets">
-            <div class="header">
-                <div class="hamburger"><hr><hr><hr></div>
-                <div class="section-title">Projets</div>
-            </div>
             <section>
                 <div class="projects"></div>
             </section>
         </div>
         <div id="contact">
-            <div class="header">
-                <div class="hamburger"><hr><hr><hr></div>
-                <div class="section-title">Contact</div>
-            </div>
             <section>
                 <form id="contact-form" >
                     <div class="name">
@@ -81,7 +71,7 @@
                 <p>LinkedIn <a href="https://www.linkedin.com/in/bruggemanraphael">Raphael Bruggeman</a></p> -->
             </section>
         </div>
-    </div>
+    </main>
     <script type="module" src="portfolio.js"></script>
 </body>
 </html>

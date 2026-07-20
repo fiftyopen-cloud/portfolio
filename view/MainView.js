@@ -12,23 +12,23 @@ export default class MainView {
     }
 
     bind_event_hamburger_menu() {
-        const hamburgers = this.#root.querySelectorAll('.hamburger');
+        const hamburger = this.#root.querySelector('.hamburger');
         const menu = this.#root.querySelector('nav ul');
+
+        if (!hamburger || !menu) {
+            return;
+        }
 
         const close_menu = () => {
             menu.classList.remove('menu_mobile');
-            hamburgers.forEach((item) => item.classList.remove('is-active'));
+            hamburger.classList.remove('is-active');
         };
         
-        hamburgers.forEach(h => {
-            h.addEventListener('click', (event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                const is_open = menu.classList.toggle('menu_mobile');
-                hamburgers.forEach((item) => {
-                    item.classList.toggle('is-active', is_open);
-                });
-            });
+        hamburger.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const is_open = menu.classList.toggle('menu_mobile');
+            hamburger.classList.toggle('is-active', is_open);
         });
 
         document.addEventListener('click', (event) => {
@@ -69,20 +69,13 @@ export default class MainView {
     }
 
     update_theme_button(current_theme) {
-        this.#root.querySelectorAll('div.header').forEach(header => {
-            if (!header.querySelector('.toggle-theme-btn')) {
-                const img = document.createElement('span');
-                img.classList.add('material-symbols-outlined');
-                img.classList.add('toggle-theme-btn');
-                img.setAttribute('alt', 'Toggle light/dark theme');
-                img.textContent = current_theme === 'dark' ? 'light_mode' : 'dark_mode';
-                    
-                header.appendChild(img);
-            } else {
-                const existing_btn = header.querySelector('.toggle-theme-btn');
+        const header = this.#root.querySelector('div.header');
+        if (header) {
+            const existing_btn = header.querySelector('.toggle-theme-btn');
+            if (existing_btn) {
                 existing_btn.textContent = current_theme === 'dark' ? 'light_mode' : 'dark_mode';
             }
-        });
+        }
     }
 
     set_active_nav_button(handler) {
