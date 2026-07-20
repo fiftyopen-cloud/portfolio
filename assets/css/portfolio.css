@@ -14,6 +14,7 @@
     --regular-font-size: clamp(.8rem, 1vw, 1.5rem);
     --input-font-size: clamp(.8rem, .5vw, .4rem);
     --label-font-size: clamp(.7rem, 0.6vw, .6rem);
+    --description-font-size: clamp(.8rem, 1vw, 1.5rem);
     --neon-glow: rgba(140, 190, 255, .45);
     user-select: none;
     scroll-behavior: smooth;
@@ -268,7 +269,7 @@ body:not(:has(.wrapper-container > div:target)) nav a[href="#introduction"] {
 
 .description {
     flex: 3;
-    font-size: var(--input--font-size);
+    font-size: var(--description-font-size);
     align-content: start;
     text-align: justify; 
     overflow-y: auto;
@@ -322,36 +323,6 @@ div.introduction {
     gap: 15px;
 }
 
-.recommandations {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    height: 100%;
-    overflow-x: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--container-border-color) transparent;
-    padding: 40px;
-}
-
-.recommandation {
-    display: flex;
-    flex-direction: column; 
-    align-items: stretch;
-    justify-content: flex-start;
-    height: 200px;
-    max-width: 50vw;
-    width: 100%;
-    border: 1px solid var(--container-border-color);
-    border-radius: 10px;
-    gap: 15px;
-    padding: 10px;
-    box-sizing: border-box;
-    box-shadow: var(--container-shadow);
-}
-
 #contact-form {
     display: flex;
     flex-direction: column;
@@ -376,10 +347,10 @@ div.introduction {
 }
 
 #contact-form>div input, #contact-form>div textarea {
-    font-size: var(--input--font-size);
-    width: 100%;
+    font-size: var(--input-font-size);
     box-sizing: border-box;
-    padding: 6px;
+    height: 2.3rem;
+    padding: 0.4rem;
     border: 1px solid var(--container-border-color);
     border-radius: 5px;
     background: transparent;
@@ -501,7 +472,7 @@ div.hamburger.is-active hr:nth-child(3) {
 @media screen and (max-width: 768px) {
 
     .name {
-        font-size: clamp(1.8rem, 2.5vw, 1.5rem);
+        font-size: clamp(1.8rem, 1.5vw, 1.5rem);
     }
 
     .role {
@@ -509,7 +480,7 @@ div.hamburger.is-active hr:nth-child(3) {
     }
     
     .description {
-        font-size-adjust: 0.8;
+        font-size: clamp(0.9rem, 1.2vw, 1rem);
     }
 
     .title {

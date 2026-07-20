@@ -5,10 +5,10 @@ export default class MainView {
     
     constructor(root) {
         this.#root = root;
-        document.addEventListener('mousemove', (event) => {
-            document.documentElement.style.setProperty('--mouse-x', `${event.clientX}px`);
-            document.documentElement.style.setProperty('--mouse-y', `${event.clientY}px`);
-        });
+        // document.addEventListener('mousemove', (event) => {
+        //     document.documentElement.style.setProperty('--mouse-x', `${event.clientX}px`);
+        //     document.documentElement.style.setProperty('--mouse-y', `${event.clientY}px`);
+        // });
     }
 
     bind_event_hamburger_menu() {
@@ -127,7 +127,6 @@ export default class MainView {
                 </div>
                 <p class="description">"${safeDescription}"</p>
             </div>
-            <img class="profile-photo" src="${safeImage}" alt="Photo de ${safeName}">
         `;
     }
 
@@ -177,31 +176,7 @@ export default class MainView {
         });
         return stack.outerHTML;
     }
-
-    display_recommandations(recommandations) {
-        const recommandations_container = this.#root.querySelector('.recommandations');
-        recommandations_container.innerHTML = '';
-        recommandations.forEach(recommandation => {
-            const recommandation_item = this.create_recommandation_item(recommandation);
-            recommandations_container.innerHTML += recommandation_item;
-        });
-    }
-
-    create_recommandation_item(recommandation) {
-        const safeName = StringsHelper.escapeHTML(recommandation?.name);
-        const safePosition = StringsHelper.escapeHTML(recommandation?.position);
-        const safeTestimonial = StringsHelper.escapeHTML(recommandation?.testimonial);  
-        
-        return `<div class="recommandation">
-                    <div class="head">
-                        <h2 class="name">${safeName}</h2>
-                        <h6 class="role">${safePosition}</h6>
-                    </div>
-                    <p class="description">"${safeTestimonial}"</p>
-                    <button class="demande_references">Demander mes références.</button>
-                </div>`;
-    }
-
+    
     form_validation(handler) {
         const form_data = this.#root.querySelector('#contact-form');
         const nameInput = form_data.querySelector('input[name="name"]');

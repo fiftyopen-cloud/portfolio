@@ -1,6 +1,5 @@
 import ProjectsData from '../core/persistance/Projects.js';
 import ProfilData from '../core/persistance/Profil.js';
-import RecommandationData from '../core/persistance/Recommandations.js';
 import LogosData from '../core/persistance/Logos.js';
 import Database from '../core/persistance/Database.js';
 
@@ -10,7 +9,6 @@ export default class MainModel {
 
     projectsData = null;
     profilData = null;
-    recommandationsData = null;
     logosData = null;
     ready;
 
@@ -23,7 +21,6 @@ export default class MainModel {
 
         this.projectsData = new ProjectsData(this.#database);
         this.profilData = new ProfilData(this.#database);
-        this.recommandationsData = new RecommandationData(this.#database);
         this.logosData = new LogosData(this.#database);
     }
 
@@ -31,10 +28,6 @@ export default class MainModel {
         return this.profilData?.get_profil() || null;
     }
 
-    get_recommandations() {
-        return this.recommandationsData?.get_recommandations() || [];
-    }
-    
     get_projects() {
         return this.projectsData?.get_projects() || [];
     }
